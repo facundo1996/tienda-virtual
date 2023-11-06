@@ -1,4 +1,6 @@
 export default {
   products: [],
-  errorProducts: ''
+  errorProducts: '',
+  productsSelected: [],
+  valueInputSearch: ''
 }
