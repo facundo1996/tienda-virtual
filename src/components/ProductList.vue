@@ -4,20 +4,14 @@ import Button from 'primevue/button';
 import Column from 'primevue/column';
 </script>
 <template>
-  <div class="card">
-    <DataTable class="table-custom" scrollable scrollHeight="calc(100vh - 330px" :value="valueInputSearch ?nombresFiltrados :products" tableStyle="min-width: 50rem">
+  <div class="card" v-if="products.length > 0">
+    <DataTable class="table-custom" scrollable scrollHeight="calc(100vh - 330px" :value="valueInputSearch ?titlesFilter :products" tableStyle="min-width: 50rem">
       <template #header>
         <div class="flex flex-wrap align-items-center justify-content-between gap-2">
-          <span class="text-xl text-900 font-bold">Products</span>
+          <span class="text-xl text-900 font-bold">Products{{ categorySelected }}</span>
         </div>
       </template>
-      <Column class="custom-column" field="title" header="Name">
-        <template>
-          <div class="column-title">
-            {{ matchingProducts.title }}
-          </div>
-        </template>
-      </Column>
+      <Column class="custom-column" field="title" header="Name" />
       <Column class="" header="Image">
         <template #body="slotProps">
           <div class="image-container">
@@ -39,6 +33,10 @@ import Column from 'primevue/column';
       <template #footer> In total there are {{ products ? matchingProducts.length : 0 }} products. </template>
     </DataTable>
   </div>
+  <div class="container-loader" v-else>
+    <div class="loader"></div>
+    <h3 class="mt-3 ">Loading...</h3>
+  </div>
 </template>
 
 <script>
@@ -47,25 +45,26 @@ export default {
   name: "ProductList",
   data(){
     return {
-      matchingProducts: []
+      matchingProducts: [],
     }
   },
   components: {},
   computed: {
-    ...mapState('products', ['products', 'valueInputSearch']),
-    nombresFiltrados() {
+    ...mapState('products', ['products', 'valueInputSearch', 'categorySelected']),
+    titlesFilter() {
       const textSearch = this.valueInputSearch.toLowerCase();
       return this.matchingProducts.filter(prod => prod.title.toLowerCase().includes(textSearch));
     }
   },
   methods: {
-    ...mapActions('products', ['getProducts', 'buyProducts']),
+    ...mapActions('products', ['getProducts', 'buyProducts', 'getCategories']),
     buyProduct(productSelected){
       this.buyProducts(productSelected)
     },
   },
-  created(){
-    this.getProducts();
+  async created(){
+    this.getProducts('https://fakestoreapi.com/products')
+    this.getCategories()
   },
   updated() {
     this.matchingProducts = this.products

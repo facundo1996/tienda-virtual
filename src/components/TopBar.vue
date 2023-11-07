@@ -3,16 +3,20 @@
 import InputText from 'primevue/inputtext';
 import ShoppingCart from './ShoppingCart.vue'
 import { mapActions, mapState } from 'vuex';
+import Categories from './Categories.vue';
 </script>
 
 <template>
   <div>
-    <Toolbar class="w- my-4">
+    <Toolbar class="toolbar-custom my-4">
       <template #start>
-        <span class="p-input-icon-left">
-          <i class="pi pi-search" />
-          <InputText v-on:keyup="searchProductsKey" placeholder="Search" />
-        </span>
+        <div class="cotainer-inputs-topbar">
+          <span class="p-input-icon-left me-md-3 mb-3 mb-md-0">
+            <i class="pi pi-search" />
+            <InputText v-on:keyup="searchProductsKey" placeholder="Search" class="custom-search-input"/>
+          </span>
+          <Categories />
+        </div>
       </template>
       <template #end>
         <ShoppingCart />
@@ -22,6 +26,7 @@ import { mapActions, mapState } from 'vuex';
 </template>
 
 <script>
+
 export default {
   name: 'TopBar',
   data() {

@@ -1,7 +1,9 @@
 export default {
   setProducts(state, products) {
     state.products = products
-    state.errorProducts = ""
+  },
+  setCategories(state, categories) {
+    state.categories = categories
   },
   setBuyProducts(state, product) {
     if(state.productsSelected.some(prod => prod.id === product.id)){
@@ -18,9 +20,17 @@ export default {
       state.productsSelected.push(product)
       state.totalProducts = state.totalProducts + 1
     }
-    console.log(state.productsSelected)
   },
   searchProduct(state, value) {
     state.valueInputSearch = value
+  },
+  setCategory(state, value) {
+    state.categorySelected = value
+  },
+  clearProducts(state){
+    state.productsSelected = []
+    state.totalProducts = 0
+    state.valueInputSearch = ''
+    state.totalPrice = 0
   }
 }

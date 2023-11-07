@@ -1,8 +1,9 @@
 export default {
   products: [],
-  errorProducts: '',
+  categories: [],
+  categorySelected: '',
   productsSelected: [],
   totalProducts: 0,
   valueInputSearch: '',
-  totalPrice: 0
+  totalPrice: 0,
 }
