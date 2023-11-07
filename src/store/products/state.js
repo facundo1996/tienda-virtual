@@ -2,5 +2,7 @@ export default {
   products: [],
   errorProducts: '',
   productsSelected: [],
-  valueInputSearch: ''
+  totalProducts: 0,
+  valueInputSearch: '',
+  totalPrice: 0
 }

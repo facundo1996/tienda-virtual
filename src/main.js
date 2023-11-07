@@ -6,7 +6,6 @@ import { store } from './store/index'
 import PrimeVue from 'primevue/config';
 import "primevue/resources/themes/lara-light-teal/theme.css";
 
-
 import Toolbar from 'primevue/toolbar';
 
 const app = createApp(App)

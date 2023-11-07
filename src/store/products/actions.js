@@ -4,7 +4,11 @@ export default {
   getProducts({ commit }) {
     axios.get('https://fakestoreapi.com/products')
       .then(res => {
-        commit('setProducts', res.data)
+        let products = res.data
+        products.map((prod) => {
+          prod.total = 0
+        })
+        commit('setProducts', products)
       })
   },
   buyProducts({ commit }, product) {

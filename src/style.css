@@ -36,6 +36,32 @@ body {
 .custom-column{
   width: 25%;
 }
+.table-custom{
+  min-height: calc(100vh - 330px);
+}
+.p-orderlist-controls {
+  display: none;
+}
+.image-list{
+  width: 50px;
+}
+.custom-slidebar{
+  width: 500px;
+}
+.title-product{
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.p-orderlist-list{
+  padding: 10px;
+  height: 500px;
+  max-height: 500px;
+}
+.total-p{
+  padding: 12px 20px;
+}
 
 @media (max-width: 1250px)  {
   .app-container{

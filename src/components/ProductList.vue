@@ -5,7 +5,7 @@ import Column from 'primevue/column';
 </script>
 <template>
   <div class="card">
-    <DataTable scrollable :value="valueInputSearch ?nombresFiltrados :products" tableStyle="min-width: 50rem">
+    <DataTable class="table-custom" scrollable scrollHeight="calc(100vh - 330px" :value="valueInputSearch ?nombresFiltrados :products" tableStyle="min-width: 50rem">
       <template #header>
         <div class="flex flex-wrap align-items-center justify-content-between gap-2">
           <span class="text-xl text-900 font-bold">Products</span>
@@ -33,7 +33,7 @@ import Column from 'primevue/column';
       <Column class="" field="category" header="Category"></Column>
       <Column header="" >
         <template #body="slotProps">
-          <Button @click="buyProduct(slotProps.data)" ><i style="font-size: 22px" class="pi pi-shopping-cart"></i></Button>
+          <Button @click="buyProduct(slotProps.data)" >{{slotProps.data.total}}<i style="font-size: 22px" class="pi ms-2 pi-shopping-cart"></i></Button>
         </template>
       </Column>
       <template #footer> In total there are {{ products ? matchingProducts.length : 0 }} products. </template>

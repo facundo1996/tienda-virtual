@@ -8,12 +8,15 @@ export default {
       state.productsSelected.forEach(oneProduct => {
         if(oneProduct.id === product.id){
           oneProduct.total = oneProduct.total +1
+          state.totalProducts = state.totalProducts + 1
+          state.totalPrice = state.totalPrice + product.price
         }
       });
     }else{
-      let selectedProduct = product
-      selectedProduct.total = 1
-      state.productsSelected.push(selectedProduct)
+      state.totalPrice = state.totalPrice + product.price
+      product.total = 1
+      state.productsSelected.push(product)
+      state.totalProducts = state.totalProducts + 1
     }
     console.log(state.productsSelected)
   },
